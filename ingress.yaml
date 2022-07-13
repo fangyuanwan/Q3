@@ -30,17 +30,24 @@ spec:
             name: product
             port:
               number: 80
+      - path: /cart
+        pathType: Prefix
+        backend:
+          service:
+            name: taskapi
+            port:
+              number: 80
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: product
+ name: taskapi
  annotations:
    konghq.com/plugins: twelve-per-min
 spec:
  selector:
-   app: product
+   app: taskapi
  ports:
  - port: 80
    targetPort: 8080
